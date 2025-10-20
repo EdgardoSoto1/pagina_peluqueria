@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Panel de Turnos</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <header>
+        <h1>Panel de Turnos</h1>
+    </header>
+    <div class="contenido">
+        <div class="turno">
+            <h2>Listado de turnos</h2>
+            <div style="overflow-x:auto;">
+                <table class="tabla-turnos">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Trabajo</th>
+                            <th>Fecha</th>
+                            <th>Horario</th>
+                            <th>Estado</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabla-turnos-body">
+                        <!-- Aquí se insertan los turnos por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        Creada por Edgardo Soto
+    </footer>
+    <script src="js/panel.js"></script>
+</body>
+</html>

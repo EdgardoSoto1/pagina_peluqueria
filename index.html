@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turnos Peluquería</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js"></script>
+
+</head>
+
+<body>
+
+    <header>
+        <img class="logo" src="./img/logo_1.png" alt="Logo">
+        <h1>Peluquería</h1>
+        <div class="admin-login">
+            <button class="login-btn" onclick="window.location.href='login.html'">Login admin</button>
+        </div>
+    </header>
+
+    <div class="contenido" id="contenidoSeleccion">
+        <!-- Aquí se agregan los contenedores .turno -->
+        <div class="turno" id="turnoSeleccion">
+            <h2>Turno</h2>
+            <p>El turno se reserva por trabajo.</p><br>
+            <div class="turno-row">
+                <div class="grupo-campo">
+                    <label for="nombreCliente">Nombre</label>
+                    <input type="text" id="nombreCliente" name="nombreCliente" placeholder="Ingrese su nombre" required>
+                </div>
+                <div class="grupo-campo">
+                    <label for="seleccion_1">Tipo de trabajo(*)</label>
+                    <select id="seleccion_1" required>
+                        <option value="">Selecciona un trabajo</option>
+                        <option value="opcion1">Corte</option>
+                        <option value="opcion2">Tintura</option>
+                        <option value="opcion3">Alisado</option>
+                        <option value="opcion3">Permanente</option>
+                    </select>
+                </div>
+                <div class="grupo-campo">
+                    <label for="medida">Largo de cabello</label>
+                    <select id="medida" required>
+                        <option value="vacio" readonly>Selecciona una medida</option>
+                        <option value="Corto">Corto </option>
+                        <option value="Medio">Medio</option>
+                        <option value="Largo">Largo</option>
+                    </select>
+                </div>
+                <button type="button" id="verMedidaBtn">Ver medida de cabello</button>
+            </div>
+            <div id="contenedorMedida" class="modal">
+                <div class="modal-contenido">
+                    <img class="medida" src="./img/medida_1.jpeg" alt="medida">
+                </div>
+            </div>
+
+        </div>
+        <!-- Más .turno agregados dinámicamente -->
+
+        <div class="boton-agregar">
+            <button onclick="agregar()" class="agregar_style">Agregar turno</button>
+        </div>
+    </div>
+
+    <div class="contenido" id="contenedorFechas">
+        <div class="fechas-row">
+            <button class="seleccionar-fechas-btn">Seleccionar fechas</button>
+        </div>
+    </div>
+
+    <!-- Modal calendario -->
+    <div id="modalCalendario" class="modal" style="display:none;">
+        <div class="modal-contenido calendario-modal">
+            <h3>Selecciona una fecha</h3>
+            <div id="calendario"></div>
+            <div id="horarios"></div> <!-- Este div debe existir -->
+            <button onclick="cerrarCalendario()" class="agregar_style">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="resumenTurnos"></div>
+
+    <footer class="footer">
+        Creada por Edgardo Soto
+    </footer>
+
+</body>
+
+</html>
+

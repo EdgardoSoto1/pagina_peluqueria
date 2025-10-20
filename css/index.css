@@ -1,0 +1,432 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    background: linear-gradient(120deg, #e3e6f3 0%, #bfc2e0 100%);
+    min-height: 100vh;
+    
+}
+
+
+body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* distribuye logo, título y login */
+    width: 100%;
+    padding: 2rem;
+    background-color: rgb(60, 66, 95);
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    max-width: 4rem;
+    border-radius: 200px;
+    margin: auto;
+}
+
+.medida {
+    max-width: 15rem;
+}
+
+header h1 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: fit-content;
+    text-align: center;
+    color: white;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.contenido {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2% auto;
+    background: linear-gradient(135deg, #6a6e96 60%, #bfc2e0 100%);
+    max-width: 1400px;
+    width: 98vw;
+    box-sizing: border-box;
+    border: 3px solid #7a7fb0;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(60,66,95,0.18);
+    padding: 32px 18px;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+
+.turno {
+    margin: 10px auto;
+    background: linear-gradient(135deg, #cfd2e6 60%, #e9eaf6 100%);
+    max-width: 1200px;
+    width: 95vw;
+    border: 2px solid #7a7fb0;
+    box-shadow: 0 4px 16px rgba(60,66,95,0.12);
+    border-radius: 18px;
+    padding: 28px 24px;
+    height: auto;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.turno:hover {
+    box-shadow: 0 8px 32px rgba(60,66,95,0.18);
+    border-color: #4b4f6b;
+}
+
+.turno h2{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.agregar_style {
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+    border-style: outset;
+    border-radius: 10px;
+}
+
+.agregar_style:hover{
+    background-color: rgb(225, 241, 128);
+}
+
+#contenedorMedida {
+    display: none;
+    margin-top: 10px;
+}
+
+#verMedidaBtn,
+.medida {
+    margin-left: 10px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(60,66,95,0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-contenido {
+    background: #fff;
+    padding: 24px;
+    border-radius: 18px;
+    box-shadow: 0 4px 16px rgba(60,66,95,0.12);
+    width: 320px;
+    max-width: 90vw;
+    text-align: center;
+    box-sizing: border-box; /* Asegura que el padding no expanda el modal */
+    overflow: hidden;       /* Oculta el desborde */
+}
+
+.medida {
+    max-width: 250px;
+    max-height: 250px;
+    display: block;
+}
+
+.admin-login {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.login-input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    background: #fff;
+    color: #3c425f;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.turno-row {
+    display: flex;
+    flex-wrap: wrap;         /* Permite que los elementos pasen a la siguiente línea si no entran */
+    gap: 0.5rem;             /* Espacio entre elementos */
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+/* .turno-row label, */
+.turno-row input,
+.turno-row select,
+.turno-row button {
+    flex: 1 1 100px;         /* Permite que los elementos se achiquen y crezcan */
+    min-width: 80px;         /* Reduce el mínimo para que entren más fácil */
+    max-width: 180px;        /* Opcional: limita el máximo */
+    border-radius: 5px;
+}
+
+
+
+.grupo-campo {
+    display: flex;
+    align-items: center;
+    gap: 2px; /* Espacio mínimo entre label y campo */
+}
+
+.grupo-campo label {
+    margin-right: 0px;
+}
+
+.grupo-campo input,
+.grupo-campo select {
+    margin-right: 5px; /* Espacio entre grupos */
+}
+
+.boton-agregar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.footer {
+    width: 100%;
+    background-color: rgb(60, 66, 95);
+    color: #fff;
+    text-align: center;
+    padding: 18px 0;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    border-top: 2px solid #7a7fb0;
+    box-shadow: 0 -4px 16px rgba(60,66,95,0.10);
+    margin-top: 32px;
+}
+
+#contenedorFechas {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2% auto;
+    background: linear-gradient(135deg, #bfc2e0 60%, #e3e6f3 100%);
+    max-width: 1400px;
+    width: 98vw;
+    box-sizing: border-box;
+    border: 3px solid #7a7fb0;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(60,66,95,0.12);
+    padding: 32px 18px;
+    transition: box-shadow 0.3s, border-color 0.3s;
+    justify-content: center;
+    align-items: center;
+}
+
+.seleccionar-fechas-btn {
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    border-radius: 16px;
+    background: #7a7fb0;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 2px 8px #bfc2e0;
+    transition: background 0.2s;
+}
+
+.seleccionar-fechas-btn:hover {
+    background: #4b4f6b;
+}
+
+.tabla-turnos {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #f5f6fa;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(60,66,95,0.10);
+}
+
+.tabla-turnos th, .tabla-turnos td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #bfc2e0;
+}
+
+.tabla-turnos th {
+    background: #bfc2e0;
+    color: #3c425f;
+    font-weight: bold;
+}
+
+.tabla-turnos tr:last-child td {
+    border-bottom: none;
+}
+
+.calendario-modal {
+    min-width: 320px;
+    max-width: 400px;
+    background: #f5f6fa;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(60,66,95,0.12);
+    text-align: center;
+}
+
+#calendario {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.cal-dia {
+    padding: 8px;
+    background: #e3e6f3;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 8px 0;
+    font-size: 1rem;
+}
+
+.cal-dia:hover {
+    background: #7a7fb0;
+    color: #fff;
+}
+
+.cal-dia.no-disponible {
+    background: #ccc;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.horario-btn {
+    margin: 4px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    background: #e3e6f3;
+    color: #3c425f;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.horario-btn.no-disponible {
+    background: #ccc;
+    color: #888;
+    cursor: not-allowed;
+}
+
+.horario-btn.disponible:hover {
+    background: #7a7fb0;
+    color: #fff;
+}
+
+.no-disponible {
+    background: #ccc !important;
+    color: #888 !important;
+    cursor: not-allowed !important;
+    opacity: 0.7;
+}
+
+.cal-dia.seleccionado {
+    background: #7a7fb0;
+    color: #fff;
+    border: 2px solid #3c425f;
+}
+
+.resumen-turno {
+    background: linear-gradient(135deg, #cfd2e6 60%, #e9eaf6 100%);
+}
+
+.resumen-turno button {
+    display: block;
+    margin: 18px auto 0 auto;
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        height: auto;
+    }
+
+    header h1 {
+        position: static;
+        width: 100%;
+        margin: 0.5rem 0;
+        text-align: center;
+        font-size: 1.3rem;
+        transform: none;
+    }
+
+    .logo {
+        position: static;
+        margin-bottom: 0.5rem;
+    }
+
+    .admin-login {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+    }
+
+    .login-input, .login-btn {
+        width: 100%;
+        margin-bottom: 0.3rem;
+    }
+
+    .turno {
+        width: 98%;
+        margin-left: 1%;
+        padding: 10px;
+        height: auto;
+    }
+
+    .turno-row {
+        flex-direction: column;
+        gap: 0.3rem;
+        align-items: stretch;
+    }
+
+    .turno-row label,
+    .turno-row input,
+    .turno-row select,
+    .turno-row button {
+        min-width: 0;
+        max-width: 100%;
+        width: 100%;
+        flex: 1 1 100%;
+    }
+}

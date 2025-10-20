@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html,body{
+  height: 100%;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    background: linear-gradient(120deg, #e3e6f3 0%, #bfc2e0 100%);
+    background-position: center;
+    background-size: cover;
+}
+
+.content {
+    width: 340px;
+    background: #f5f6fa;
+    border-radius: 16px;
+    padding: 40px 30px;
+    box-shadow: 0 4px 24px rgba(60,66,95,0.15), 0 1.5px 6px #bfc2e0;
+}
+
+.content .text{
+  font-size: 33px;
+  font-weight: 600;
+  margin-bottom: 70px;
+  color: #3c425f;
+  text-shadow: 1px 1px 2px #bfc2e0;
+}
+
+.content .field{
+  height: 50px;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.field input {
+    height: 100%;
+    width: 100%;
+    padding-left: 45px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    color: #3c425f;
+    background: #e3e6f3;
+    border-radius: 25px;
+    box-shadow: inset 1px 1px 6px #bfc2e0,
+                inset -1px -2px 4px #fff;
+}
+
+.field input:focus ~ label{
+  box-shadow: inset 2px 2px 5px #babecc,
+              inset -1px -1px 2px #ffffff73;
+}
+
+.field:nth-child(2){
+  margin-top: 20px;
+}
+
+.field span{
+  position: absolute;
+  width: 50px;
+  line-height: 50px;
+  color: #3c425f;
+  text-shadow: none;
+}
+
+.field label{
+  position: absolute;
+  top: 50%;
+  left: 45px;
+  pointer-events: none;
+  color: #3c425f;
+  transform: translateY(-50%);
+}
+
+
+.field input:focus ~ label{
+  opacity: 0;
+}
+
+.forgot-pass {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.forgot-pass a{
+  font-size: 16px;
+  color:#7a7fb0;
+  text-decoration: none;
+}
+
+.forgot-pass:hover a{
+  text-decoration: underline;
+}
+
+button {
+    margin: 15px 0;
+    width: 70%;
+    height: 50px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    background: #7a7fb0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 2px 8px #bfc2e0;
+    text-shadow: none;
+}
+
+button:focus {
+    color: #3c425f;
+    box-shadow: 0 0 0 2px #7a7fb0;
+}
+
+.signup{
+  font-size: 16px;
+  color: #595959;
+  margin: 10px 0;
+}
+
+.signup a{
+  color:#7a7fb0;
+  text-decoration: none;
+}
+
+.signup a:hover{
+  text-decoration: underline;
+}
+::placeholder
+{
+  color: #7a7fb0;
+  font-weight: 300;
+}
