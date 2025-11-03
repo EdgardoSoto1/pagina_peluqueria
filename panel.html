@@ -4,36 +4,54 @@
     <meta charset="UTF-8">
     <title>Panel de Turnos</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/panel.css">
+    <script src="js/panel.js"></script>
 </head>
 <body>
     <header>
         <h1>Panel de Turnos</h1>
+        <button class="btn-volver-menu" onclick="window.location.href='menu.html'">← Volver al Menú</button>
     </header>
     <div class="contenido">
         <div class="turno">
             <h2>Listado de turnos</h2>
-            <div style="overflow-x:auto;">
+            <div class="filtro-fechas">
+                <div class="filtro-grupo">
+                    <label for="fecha-inicio">Fecha inicio:</label>
+                    <input type="date" id="fecha-inicio">
+                </div>
+                <div class="filtro-grupo">
+                    <label for="fecha-fin">Fecha fin:</label>
+                    <input type="date" id="fecha-fin">
+                </div>
+                <button class="btn-filtrar" onclick="filtrarPorFechas()">Filtrar</button>
+                <button class="btn-limpiar" onclick="limpiarFiltros()">Limpiar filtros</button>
+            </div>
+            <div class="tabla-turnos-wrapper">
                 <table class="tabla-turnos">
                     <thead>
                         <tr>
-                            <th>Nombre</th>
+                            <th>Cliente</th>
                             <th>Trabajo</th>
+                            <th>Medida</th>
                             <th>Fecha</th>
                             <th>Horario</th>
+                            <th>Responsable</th>
+                            <th>Email</th>
                             <th>Estado</th>
                             <th>Acción</th>
                         </tr>
                     </thead>
                     <tbody id="tabla-turnos-body">
-                        <!-- Aquí se insertan los turnos por JS -->
+                       <!-- insercion de js -->
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
     <footer class="footer">
-        Creada por Edgardo Soto
+        Desarrollada por Edgardo Soto
     </footer>
-    <script src="js/panel.js"></script>
+    
 </body>
 </html>

@@ -7,6 +7,7 @@
   <title>ingreso de usuario</title>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"> -->
   <link rel="stylesheet" href="css/login.css">
+  <script src="js/login.js"></script>
 
 </head>
 <body>
@@ -16,19 +17,13 @@
       <form action="#">
         <div class="field">
           <span class="fas fa-user"></span>
-          <input type="text" required placeholder="Email">
-         <!----- <label>Email or Phone</label>---->
+          <input type="text" required placeholder="Usuario">
         </div>
         <div class="field">
           <span class="fas fa-lock"></span>
-          <input type="password" placeholder="password">
-         <!----- <label>Password</label>---->
+          <input type="password" required placeholder="Contraseña">
         </div>
-        <div class="forgot-pass"><a href="#">Reset password</a></div>
-        <button>Ingresar</button>
-        <!-- <div class="signup">Not a member?
-          <a href="#">signup now</a>
-        </div> -->
+        <button type="submit">Ingresar</button>
       </form>
   </div>
 </body>

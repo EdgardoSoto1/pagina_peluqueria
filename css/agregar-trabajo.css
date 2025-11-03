@@ -1,0 +1,133 @@
+.agregar-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(60,66,95,0.15);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.form-title {
+    color: rgb(60, 66, 95);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.form-subtitle {
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: rgb(60, 66, 95);
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: rgb(60, 66, 95);
+    box-shadow: 0 0 0 3px rgba(60,66,95,0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 120px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, rgb(60, 66, 95), rgb(80, 86, 115));
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(60,66,95,0.3);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: none;
+    border-left: 4px solid #28a745;
+}
+
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: none;
+    border-left: 4px solid #dc3545;
+}
+
+@media (max-width: 768px) {
+    .agregar-container {
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}

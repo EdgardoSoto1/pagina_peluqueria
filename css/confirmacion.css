@@ -1,0 +1,213 @@
+
+.confirmacion-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(60,66,95,0.15);
+}
+
+.form-header .form-title {
+    color: rgb(60, 66, 95);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.form-subtitle {
+    color: #666;
+}
+
+.resumen-turnos {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 4px solid rgb(60, 66, 95);
+}
+
+.resumen-turnos h3 {
+    margin: 0 0 15px 0;
+    color: rgb(60, 66, 95);
+    font-size: 1.2rem;
+}
+
+#listaTurnos {
+    font-size: 14px;
+    color: #555;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: rgb(60, 66, 95);
+    font-size: 1.1rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: rgb(60, 66, 95);
+    box-shadow: 0 0 0 3px rgba(60,66,95,0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 120px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, rgb(60, 66, 95), rgb(80, 86, 115));
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(60,66,95,0.3);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: none;
+    border-left: 4px solid #28a745;
+}
+
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: none;
+    border-left: 4px solid #dc3545;
+}
+
+.loading {
+    text-align: center;
+    color: rgb(60, 66, 95);
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.drops {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.drop {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    transition: all 0.2s ease;
+}
+
+.drop-1 {
+    height: 180px;
+    width: 180px;
+    top: 100px;
+    left: 50px;
+    z-index: -1;
+}
+
+.drop-2 {
+    height: 120px;
+    width: 120px;
+    top: 400px;
+    left: 350px;
+    z-index: -1;
+}
+
+.drop-3 {
+    height: 100px;
+    width: 100px;
+    bottom: 150px;
+    left: 310px;
+    z-index: -1;
+}
+
+.drop-4 {
+    height: 150px;
+    width: 150px;
+    top: 150px;
+    right: 60px;
+    z-index: -1;
+}
+
+.drop-5 {
+    height: 90px;
+    width: 90px;
+    top: 500px;
+    right: 350px;
+    z-index: -1;
+}
+
+.drop-6 {
+    height: 130px;
+    width: 130px;
+    bottom: 100px;
+    right: 500px;
+    z-index: -1;
+}
+
+@media (max-width: 768px) {
+    .confirmacion-container {
+        margin: 20px;
+        padding: 20px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}

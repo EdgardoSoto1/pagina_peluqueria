@@ -20,36 +20,62 @@
         </div>
     </header>
 
-    <div class="contenido" id="contenidoSeleccion">
-        <!-- Aquí se agregan los contenedores .turno -->
+    <main class="main-content">
+        
+        <div id="mensajeExito" class="mensaje-exito" style="display: none;">
+            <div class="contenido-mensaje">
+                <span class="texto-exito">Reserva confirmada exitosamente</span>
+                <button class="btn-cerrar" onclick="cerrarMensajeExito()">×</button>
+            </div>
+        </div>
+        
+        <div class="contenido" id="contenidoSeleccion">
+       
         <div class="turno" id="turnoSeleccion">
             <h2>Turno</h2>
-            <p>El turno se reserva por trabajo.</p><br>
+            <p class="texto-instrucciones">Puede reservar mas de un trabajo para distintas personas en una sola reserva.
+Ejemplo: completa su nombre elije corte, agrega otro trabajo (tintura), confirma fecha y hora y luego puede continuar con la reserva de otro turno para otra persona.
+Usted será el responsable de confirmar todos los turnos.</p><br>
+           
             <div class="turno-row">
                 <div class="grupo-campo">
-                    <label for="nombreCliente">Nombre</label>
+                    <label for="nombreCliente">Nombre: </label>
                     <input type="text" id="nombreCliente" name="nombreCliente" placeholder="Ingrese su nombre" required>
                 </div>
-                <div class="grupo-campo">
-                    <label for="seleccion_1">Tipo de trabajo(*)</label>
-                    <select id="seleccion_1" required>
-                        <option value="">Selecciona un trabajo</option>
-                        <option value="opcion1">Corte</option>
-                        <option value="opcion2">Tintura</option>
-                        <option value="opcion3">Alisado</option>
-                        <option value="opcion3">Permanente</option>
-                    </select>
+            </div>
+
+           
+            <div id="trabajosContainer">
+                <div class="trabajo-item" data-trabajo="1">
+                    <h4>Trabajo 1:</h4>
+                    <div class="turno-row">
+                        <div class="grupo-campo">
+                            <label for="seleccion_1">Tipo de trabajo(*)</label>
+                            <select id="seleccion_1" class="trabajo-select" required>
+                                <option value="">Selecciona un trabajo</option>
+                                <option value="opcion1">Corte</option>
+                                <option value="opcion2">Tintura</option>
+                                <option value="opcion3">Alisado</option>
+                                <option value="opcion4">Permanente</option>
+                            </select>
+                        </div>
+                        <div class="grupo-campo">
+                            <label for="medida">Largo de cabello</label>
+                            <select id="medida" class="medida-select" required>
+                                <option value="vacio" readonly>Selecciona una medida</option>
+                                <option value="Corto">Corto</option>
+                                <option value="Medio">Medio</option>
+                                <option value="Largo">Largo</option>
+                            </select>
+                        </div>
+                        <button type="button" id="verMedidaBtn">Ver medida de cabello</button>
+                    </div>
                 </div>
-                <div class="grupo-campo">
-                    <label for="medida">Largo de cabello</label>
-                    <select id="medida" required>
-                        <option value="vacio" readonly>Selecciona una medida</option>
-                        <option value="Corto">Corto </option>
-                        <option value="Medio">Medio</option>
-                        <option value="Largo">Largo</option>
-                    </select>
-                </div>
-                <button type="button" id="verMedidaBtn">Ver medida de cabello</button>
+            </div>
+
+           
+            <div class="boton-agregar-trabajo" style="text-align: center; margin: 15px 0;">
+                <button type="button" id="btnAgregarTrabajo" class="agregar_style" style="background: #4CAF50; color: white;">➕ Agregar otro trabajo</button>
             </div>
             <div id="contenedorMedida" class="modal">
                 <div class="modal-contenido">
@@ -57,11 +83,6 @@
                 </div>
             </div>
 
-        </div>
-        <!-- Más .turno agregados dinámicamente -->
-
-        <div class="boton-agregar">
-            <button onclick="agregar()" class="agregar_style">Agregar turno</button>
         </div>
     </div>
 
@@ -71,23 +92,36 @@
         </div>
     </div>
 
-    <!-- Modal calendario -->
+   
     <div id="modalCalendario" class="modal" style="display:none;">
         <div class="modal-contenido calendario-modal">
             <h3>Selecciona una fecha</h3>
             <div id="calendario"></div>
-            <div id="horarios"></div> <!-- Este div debe existir -->
+            <div id="horarios"></div> 
             <button onclick="cerrarCalendario()" class="agregar_style">Cerrar</button>
         </div>
     </div>
 
-    <div id="resumenTurnos"></div>
+        <div id="resumenTurnos"></div>
+    </main>
+
+    
+    <div class="drops">
+        <div class="drop drop-1"></div>
+        <div class="drop drop-2"></div>
+        <div class="drop drop-3"></div>
+        <div class="drop drop-4"></div>
+        <div class="drop drop-5"></div>
+        <div class="drop drop-6"></div>
+    </div>
 
     <footer class="footer">
-        Creada por Edgardo Soto
+        Desarrollada por Edgardo Soto
     </footer>
 
 </body>
-
 </html>
+
+
+
 
