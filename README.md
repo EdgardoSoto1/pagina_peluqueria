@@ -26,6 +26,11 @@ Para que tu página se vea desde este repositorio y funcione en el navegador, si
 
 Tu página web estará disponible en:
 ```
+https://TU-USUARIO.github.io/TU-REPOSITORIO/
+```
+
+Por ejemplo, si tu usuario es `edgardosoto1` y tu repositorio es `pagina_peluqueria`:
+```
 https://edgardosoto1.github.io/pagina_peluqueria/
 ```
 
@@ -116,12 +121,13 @@ Si solo quieres mostrar la página como portafolio sin funcionalidad de guardado
 - ⚠️ Guardado de turnos (requiere backend desplegado)
 - ⚠️ Login de administrador (requiere backend desplegado)
 
-## 📝 Credenciales de Administrador
+## 📝 Credenciales de Administrador (Valores de Ejemplo)
 
-Usuario: `edgardo`  
-Contraseña: `123456`
+**⚠️ IMPORTANTE**: Las credenciales actuales en `app.py` son:
+- Usuario: `edgardo`  
+- Contraseña: `123456`
 
-**⚠️ IMPORTANTE**: Cambia estas credenciales en el archivo `app.py` antes de desplegar en producción.
+**Debes cambiarlas INMEDIATAMENTE** antes de desplegar en producción por razones de seguridad. Estas son solo para pruebas locales.
 
 ## 🤝 Desarrollador
 

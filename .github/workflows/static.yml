@@ -32,11 +32,17 @@ jobs:
         uses: actions/checkout@v4
       - name: Configurar Pages
         uses: actions/configure-pages@v5
+      - name: Preparar archivos estáticos
+        run: |
+          mkdir -p _site
+          cp -r *.html css js img _site/
+          # Excluir archivos de backend y configuración
+          
       - name: Subir artefacto
         uses: actions/upload-pages-artifact@v3
         with:
-          # Subir todo el repositorio
-          path: '.'
+          # Subir solo contenido estático (HTML, CSS, JS, imágenes)
+          path: '_site'
       - name: Desplegar a GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

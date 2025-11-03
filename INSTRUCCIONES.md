@@ -21,8 +21,10 @@
 
 ### 5️⃣ ¡Listo! Tu página estará en:
 ```
-https://edgardosoto1.github.io/pagina_peluqueria/
+https://TU-USUARIO.github.io/TU-REPOSITORIO/
 ```
+
+**Ejemplo**: `https://edgardosoto1.github.io/pagina_peluqueria/`
 
 ---
 
