@@ -1,54 +1,6 @@
 let turnosAcumulados = [];
 let contadorTrabajos = 1;
 
-function obtenerTextoTrabajo(valor) {
-    switch(valor) {
-        case 'opcion1': return 'Corte';
-        case 'opcion2': return 'Tintura';
-        case 'opcion3': return 'Alisado';
-        case 'opcion4': return 'Permanente';
-        default: return valor;
-    }
-}
-
-function validarTurno() {
-    const nombre = document.getElementById('nombreCliente').value.trim();
-    const trabajo = document.getElementById('seleccion_1').value;
-    const medida = document.getElementById('medida').value;
-    
-    if (nombre === '') {
-        alert('Por favor, ingrese su nombre');
-        document.getElementById('nombreCliente').focus();
-        return false;
-    }
-    
-    if (nombre.length < 2) {
-        alert('El nombre debe tener al menos 2 caracteres');
-        document.getElementById('nombreCliente').focus();
-        return false;
-    }
-    
-    if (trabajo === '' || trabajo === null) {
-        alert('Por favor, seleccione un tipo de trabajo');
-        document.getElementById('seleccion_1').focus();
-        return false;
-    }
-    
-    if (trabajo !== 'opcion1' && (medida === '' || medida === 'vacio')) {
-        alert('Por favor, seleccione el largo de cabello');
-        document.getElementById('medida').focus();
-        return false;
-    }
-    
-
-    if (!horarioSeleccionado) {
-        alert('Por favor, seleccione una fecha y horario');
-        return false;
-    }
-    
-    return true;
-}
-
 function agregarOtroTrabajo() {
     contadorTrabajos++;
     const trabajosContainer = document.getElementById('trabajosContainer');
@@ -65,10 +17,10 @@ function agregarOtroTrabajo() {
                 <label for="seleccion_${contadorTrabajos}">Tipo de trabajo(*)</label>
                 <select id="seleccion_${contadorTrabajos}" class="trabajo-select" required>
                     <option value="">Selecciona un trabajo</option>
-                    <option value="opcion1">Corte</option>
-                    <option value="opcion2">Tintura</option>
-                    <option value="opcion3">Alisado</option>
-                    <option value="opcion4">Permanente</option>
+                    <option value="Corte">Corte</option>
+                    <option value="Tintura">Tintura</option>
+                    <option value="Alisado">Alisado</option>
+                    <option value="Permanente">Permanente</option>
                 </select>
             </div>
             <div class="grupo-campo">
@@ -97,7 +49,7 @@ function agregarOtroTrabajo() {
     const verMedidaBtn = document.getElementById(`verMedidaBtn_${contadorTrabajos}`);
     
     trabajoSelect.addEventListener('change', function() {
-        if (this.value === 'opcion1') {
+        if (this.value === 'Corte') {
             medidaSelect.disabled = true;
             medidaSelect.value = 'vacio';
             verMedidaBtn.disabled = true;
@@ -135,13 +87,11 @@ function validarTodosLosTrabajos() {
 
     if (nombre === '') {
         alert('Por favor, ingrese su nombre');
-        document.getElementById('nombreCliente').focus();
         return false;
     }
     
     if (nombre.length < 2) {
         alert('El nombre debe tener al menos 2 caracteres');
-        document.getElementById('nombreCliente').focus();
         return false;
     }
     
@@ -164,13 +114,11 @@ function validarTodosLosTrabajos() {
         
         if (tipoTrabajo === '' || tipoTrabajo === null) {
             alert(`Por favor, seleccione el tipo de trabajo para el Trabajo ${numeroTrabajo}`);
-            trabajoSelect.focus();
             return false;
         }
         
-        if (tipoTrabajo !== 'opcion1' && (medida === '' || medida === 'vacio')) {
+        if (tipoTrabajo !== 'Corte' && (medida === '' || medida === 'vacio')) {
             alert(`Por favor, seleccione el largo de cabello para el Trabajo ${numeroTrabajo}`);
-            medidaSelect.focus();
             return false;
         }
     }
@@ -196,12 +144,11 @@ function obtenerTodosLosTrabajos() {
         if (trabajoSelect && medidaSelect) {
             const trabajo = trabajoSelect.value;
             const medida = medidaSelect.value;
-            const trabajoTexto = obtenerTextoTrabajo(trabajo);
-            const medidaTexto = (trabajo === 'opcion1') ? 'No aplica' : medida;
+            const medidaTexto = (trabajo === 'Corte') ? 'No aplica' : medida;
             
             trabajos.push({
                 trabajo: trabajo,
-                trabajoTexto: trabajoTexto,
+                trabajoTexto: trabajo,
                 medida: medida,
                 medidaTexto: medidaTexto
             });
@@ -329,9 +276,6 @@ async function confirmarTodosLosTurnos() {
         alert('No hay turnos para enviar.');
         return;
     }
-    
-    console.log('Preparando datos para confirmación final...');
-    
 
     try {
         await cargarTurnosOcupados(); // Actualiza datos más recientes
@@ -376,14 +320,10 @@ async function confirmarTodosLosTurnos() {
         
 
         sessionStorage.setItem('datosReserva', JSON.stringify(datosParaConfirmacion));
-        
-        console.log('Datos preparados, redirigiendo a confirmación...');
-        
 
-        window.location.href = 'confirmacion.html';
+        window.location.href = 'html/confirmacion.html';
         
     } catch (error) {
-        console.error('Error en validación final:', error);
         alert('Error al validar los turnos. Por favor, intente nuevamente.');
     }
 }
@@ -399,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const verMedidaBtn = document.getElementById('verMedidaBtn');
 
     function actualizarMedida() {
-        if (trabajo.value === 'opcion1') { 
+        if (trabajo.value === 'Corte') { 
             medida.disabled = true;
             verMedidaBtn.disabled = true;
         } else {
@@ -422,19 +362,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     const btnAgregarTrabajo = document.getElementById('btnAgregarTrabajo');
     if (btnAgregarTrabajo) {
         btnAgregarTrabajo.addEventListener('click', agregarOtroTrabajo);
     }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('reserva') === 'exitosa') {
+        mostrarMensajeExito();
+        window.history.replaceState({}, document.title, window.location.pathname);
+    }
+    
+    cargarTurnosOcupados().then(() => {
+    }).catch(error => {
+    });
 });
 
 
-
-
-function loginExitoso() {
-    window.location.href = "panel.html";
-}
 
 
 
@@ -505,50 +449,17 @@ function cargarTurnosOcupados() {
                 }
                 horariosOcupados[turno.fecha].push(turno.horario);
             });
-            console.log('Horarios ocupados cargados:', horariosOcupados);
             return horariosOcupados;
         })
         .catch(error => {
-            console.error('Error cargando turnos ocupados:', error);
             horariosOcupados = {};
             return horariosOcupados;
         });
 }
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Página cargada, iniciando carga de turnos ocupados...');
-    
-
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('reserva') === 'exitosa') {
-        mostrarMensajeExito();
-
-        window.history.replaceState({}, document.title, window.location.pathname);
-    }
-    
-    cargarTurnosOcupados().then(() => {
-        console.log('Turnos ocupados cargados exitosamente');
-    }).catch(error => {
-        console.error('Error al cargar turnos ocupados:', error);
-    });
-});
-
-
 function mostrarMensajeExito() {
-    const mensaje = document.getElementById('mensajeExito');
-    mensaje.style.display = 'block';
-    
-
-    setTimeout(() => {
-        cerrarMensajeExito();
-    }, 5000);
-}
-
-
-function cerrarMensajeExito() {
-    const mensaje = document.getElementById('mensajeExito');
-    mensaje.style.display = 'none';
+    alert('¡Reserva confirmada exitosamente!');
 }
 
 let horarioSeleccionado = null;
@@ -557,10 +468,6 @@ let horarioSeleccionado = null;
 function verificarTurnosConsecutivos(horaInicio, cantidadTurnos, horariosOcupados, fecha) {
     const ocupados = horariosOcupados[fecha] || [];
     const ocupadosNormalizados = ocupados.map(h => h.trim());
-    
-    console.log(`Verificando turnos para ${fecha} desde ${horaInicio}, cantidad: ${cantidadTurnos}`);
-    console.log('Horarios ocupados en esta fecha:', ocupadosNormalizados);
-    
 
     const [hora, minutos] = horaInicio.split(':').map(Number);
     let minutosInicio = hora * 60 + minutos;
@@ -577,19 +484,15 @@ function verificarTurnosConsecutivos(horaInicio, cantidadTurnos, horariosOcupado
         turnosAVerificar.push(horarioString);
         
         if (ocupadosNormalizados.includes(horarioString)) {
-            console.log(`Turno ${horarioString} está ocupado`);
-            return false; // Turno ocupado
+            return false;
         }
-        
 
         if (minutosActuales < 9 * 60 || minutosActuales >= 17 * 60) {
-            console.log(`Turno ${horarioString} fuera del horario laboral`);
-            return false; // Fuera del horario laboral
+            return false;
         }
     }
-    
-    console.log(`Todos los turnos disponibles:`, turnosAVerificar);
-    return true; // Todos los turnos están disponibles
+
+    return true;
 }
 
 

@@ -38,6 +38,17 @@
     color: #555;
 }
 
+.turno-item {
+    padding: 10px 0;
+    line-height: 1.8;
+}
+
+.turno-divisor {
+    border: none;
+    border-top: 2px solid #dee2e6;
+    margin: 15px 0;
+}
+
 .form-group {
     margin-bottom: 25px;
 }

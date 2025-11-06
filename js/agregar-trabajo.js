@@ -1,9 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     verificarAutenticacion();
-    
-    console.log('Página Agregar Trabajo cargada');
-    
 
     const form = document.getElementById('formAgregarTrabajo');
     form.addEventListener('submit', manejarEnvioFormulario);
@@ -22,9 +19,6 @@ function manejarEnvioFormulario(event) {
         requiereMedida: formData.get('requiereMedida') === 'si',
         activo: formData.get('activo') === 'true'
     };
-
-    console.log('Datos del trabajo a guardar:', trabajoData);
-
 
     if (!trabajoData.nombre.trim()) {
         mostrarError('El nombre del trabajo es obligatorio');
@@ -71,7 +65,6 @@ function simularGuardado(trabajoData) {
         }
     })
     .catch(error => {
-        console.error('Error:', error);
         mostrarError('Error de conexión al servidor');
     })
     .finally(() => {

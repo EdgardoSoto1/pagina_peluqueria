@@ -36,7 +36,10 @@ header {
 }
 
 .medida {
-    max-width: 15rem;
+    max-width: 250px;
+    max-height: 250px;
+    display: block;
+    margin-left: 10px;
 }
 
 header h1 {
@@ -117,8 +120,7 @@ header h1 {
     margin-top: 10px;
 }
 
-#verMedidaBtn,
-.medida {
+#verMedidaBtn {
     margin-left: 10px;
 }
 
@@ -143,8 +145,8 @@ header h1 {
     width: 320px;
     max-width: 90vw;
     text-align: center;
-    box-sizing: border-box; /* Asegura que el padding no expanda el modal */
-    overflow: hidden;       /* Oculta el desborde */
+    box-sizing: border-box; 
+    overflow: hidden;      
 }
 
 .medida {
@@ -187,7 +189,7 @@ header h1 {
 .turno-row input,
 .turno-row select,
 .turno-row button {
-    flex: 1 1 100px;         */
+    flex: 1 1 100px;
     min-width: 80px;         
     max-width: 180px;        
     border-radius: 5px;
@@ -281,65 +283,6 @@ header h1 {
     background: #4b4f6b;
 }
 
-.tabla-turnos {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background: #f5f6fa;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(60,66,95,0.10);
-    font-size: 14px;
-}
-
-.tabla-turnos th, .tabla-turnos td {
-    padding: 10px 8px;
-    text-align: center;
-    border-bottom: 1px solid #bfc2e0;
-    vertical-align: middle;
-}
-
-.tabla-turnos th {
-    background: #bfc2e0;
-    color: #3c425f;
-    font-weight: bold;
-    font-size: 13px;
-    white-space: nowrap;
-}
-
-.tabla-turnos td {
-    word-wrap: break-word;
-    max-width: 150px;
-}
-
-.tabla-turnos td:nth-child(1) { /* Cliente */
-    font-weight: 600;
-    color: #2c3e50;
-}
-
-.tabla-turnos td:nth-child(6), /* Responsable */
-.tabla-turnos td:nth-child(7) { /* Email */
-    font-size: 12px;
-    color: #5a6c7d;
-}
-
-.tabla-turnos td:nth-child(7) { /* Email */
-    word-break: break-all;
-    max-width: 120px;
-}
-
-.tabla-turnos tr:nth-child(even) {
-    background-color: rgba(255,255,255,0.3);
-}
-
-.tabla-turnos tr:hover {
-    background-color: rgba(63,94,251,0.1);
-}
-
-.tabla-turnos tr:last-child td {
-    border-bottom: none;
-}
-
 .calendario-modal {
     min-width: 320px;
     max-width: 400px;
@@ -358,7 +301,6 @@ header h1 {
 }
 
 .cal-dia {
-    padding: 8px;
     background: #e3e6f3;
     border-radius: 8px;
     cursor: pointer;
@@ -367,7 +309,7 @@ header h1 {
     width: 100%;
     min-width: 0;
     box-sizing: border-box;
-    padding: 8px 0;
+    padding: 8px 0;  /* ← Solo uno */
     font-size: 1rem;
 }
 
@@ -407,9 +349,9 @@ header h1 {
 }
 
 .no-disponible {
-    background: #ccc !important;
-    color: #888 !important;
-    cursor: not-allowed !important;
+    background: #ccc;
+    color: #888;
+    cursor: not-allowed;
     opacity: 0.7;
 }
 
@@ -463,37 +405,47 @@ header h1 {
 }
 
 .btn-eliminar {
-    background: linear-gradient(135deg, #ff6b6b 60%, #ff8e8e 100%) !important;
-    color: white !important;
-    border: none !important;
-    padding: 8px 12px !important;
-    font-size: 0.85rem !important;
-    border-radius: 8px !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
+    background: linear-gradient(135deg, #ff6b6b 60%, #ff8e8e 100%);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
 .btn-eliminar:hover {
-    background: linear-gradient(135deg, #ff5252 60%, #ff7979 100%) !important;
+    background: linear-gradient(135deg, #ff5252 60%, #ff7979 100%);
     transform: translateY(-1px);
 }
 
 .btn-confirmar-todos {
-    background: linear-gradient(135deg, #4CAF50 60%, #66BB6A 100%) !important;
-    color: white !important;
-    font-size: 1.1rem !important;
-    padding: 12px 24px !important;
-    font-weight: bold !important;
-    border: none !important;
-    border-radius: 12px !important;
-    box-shadow: 0 4px 16px rgba(76,175,80,0.3) !important;
-    transition: all 0.3s ease !important;
+    background: linear-gradient(135deg, #4CAF50 60%, #66BB6A 100%);
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(76,175,80,0.3);
+    transition: all 0.3s ease;
 }
 
 .btn-confirmar-todos:hover {
-    background: linear-gradient(135deg, #43A047 60%, #5CB85C 100%) !important;
+    background: linear-gradient(135deg, #43A047 60%, #5CB85C 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(76,175,80,0.4) !important;
+    box-shadow: 0 6px 20px rgba(76,175,80,0.4);
+}
+
+.boton-agregar-trabajo {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.btn-agregar-trabajo {
+    background: #4CAF50;
+    color: white;
 }
 
 .trabajo-item {
@@ -521,17 +473,17 @@ header h1 {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #ff6b6b !important;
-    color: white !important;
-    border: none !important;
-    padding: 5px 10px !important;
-    border-radius: 6px !important;
-    font-size: 0.8rem !important;
-    cursor: pointer !important;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
 }
 
 .btn-quitar-trabajo:hover {
-    background: #ff5252 !important;
+    background: #ff5252;
 }
 
 #btnAgregarTrabajo {
@@ -539,7 +491,7 @@ header h1 {
 }
 
 #btnAgregarTrabajo:hover {
-    background: #43A047 !important;
+    background: #43A047;
     transform: translateY(-1px);
 }
 
@@ -604,59 +556,6 @@ header h1 {
 
 
 
-
-
-.mensaje-exito {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    animation: slideDown 0.5s ease-out;
-}
-
-.contenido-mensaje {
-    background: linear-gradient(45deg, #28a745, #20c997);
-    color: white;
-    padding: 15px 25px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(40,167,69,0.3);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 300px;
-}
-
-.texto-exito {
-    flex: 1;
-    font-weight: 600;
-}
-
-.btn-cerrar {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 3px;
-    transition: background-color 0.3s;
-}
-
-.btn-cerrar:hover {
-    background-color: rgba(255,255,255,0.2);
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
 
 .drops {
     position: fixed;

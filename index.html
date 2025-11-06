@@ -13,34 +13,26 @@
 <body>
 
     <header>
-        <img class="logo" src="./img/logo_1.png" alt="Logo">
+        <img class="logo" src="./img/logo_1.png">
         <h1>Peluquería</h1>
         <div class="admin-login">
-            <button class="login-btn" onclick="window.location.href='login.html'">Login admin</button>
+            <button class="login-btn" onclick="window.location.href= 'html/login.html'">Login admin</button>
         </div>
     </header>
 
     <main class="main-content">
         
-        <div id="mensajeExito" class="mensaje-exito" style="display: none;">
-            <div class="contenido-mensaje">
-                <span class="texto-exito">Reserva confirmada exitosamente</span>
-                <button class="btn-cerrar" onclick="cerrarMensajeExito()">×</button>
-            </div>
-        </div>
-        
         <div class="contenido" id="contenidoSeleccion">
        
         <div class="turno" id="turnoSeleccion">
             <h2>Turno</h2>
-            <p class="texto-instrucciones">Puede reservar mas de un trabajo para distintas personas en una sola reserva.
-Ejemplo: completa su nombre elije corte, agrega otro trabajo (tintura), confirma fecha y hora y luego puede continuar con la reserva de otro turno para otra persona.
-Usted será el responsable de confirmar todos los turnos.</p><br>
+            <p class="texto-instrucciones">Complete los datos para reservar uno o más trabajos. 
+Puede agendar turnos para diferentes personas en una misma reserva.</p><br>
            
             <div class="turno-row">
                 <div class="grupo-campo">
                     <label for="nombreCliente">Nombre: </label>
-                    <input type="text" id="nombreCliente" name="nombreCliente" placeholder="Ingrese su nombre" required>
+                    <input type="text" id="nombreCliente" name="nombreCliente" placeholder=" Ingrese su nombre" required>
                 </div>
             </div>
 
@@ -53,10 +45,10 @@ Usted será el responsable de confirmar todos los turnos.</p><br>
                             <label for="seleccion_1">Tipo de trabajo(*)</label>
                             <select id="seleccion_1" class="trabajo-select" required>
                                 <option value="">Selecciona un trabajo</option>
-                                <option value="opcion1">Corte</option>
-                                <option value="opcion2">Tintura</option>
-                                <option value="opcion3">Alisado</option>
-                                <option value="opcion4">Permanente</option>
+                                <option value="Corte">Corte</option>
+                                <option value="Tintura">Tintura</option>
+                                <option value="Alisado">Alisado</option>
+                                <option value="Permanente">Permanente</option>
                             </select>
                         </div>
                         <div class="grupo-campo">
@@ -73,9 +65,8 @@ Usted será el responsable de confirmar todos los turnos.</p><br>
                 </div>
             </div>
 
-           
-            <div class="boton-agregar-trabajo" style="text-align: center; margin: 15px 0;">
-                <button type="button" id="btnAgregarTrabajo" class="agregar_style" style="background: #4CAF50; color: white;">➕ Agregar otro trabajo</button>
+            <div class="boton-agregar-trabajo">
+                <button type="button" id="btnAgregarTrabajo" class="agregar_style btn-agregar-trabajo">➕ Agregar otro trabajo</button>
             </div>
             <div id="contenedorMedida" class="modal">
                 <div class="modal-contenido">
@@ -116,7 +107,7 @@ Usted será el responsable de confirmar todos los turnos.</p><br>
     </div>
 
     <footer class="footer">
-        Desarrollada por Edgardo Soto
+         Sistema de Turnos de Peluquería. 2025 &copy; <br>
     </footer>
 
 </body>

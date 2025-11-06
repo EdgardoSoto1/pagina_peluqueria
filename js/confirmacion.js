@@ -3,7 +3,6 @@ let datosReserva = null;
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Cargando página de confirmación...');
     cargarDatosReserva();
     configurarFormulario();
 });
@@ -14,18 +13,16 @@ function cargarDatosReserva() {
     
     if (!datosString) {
         alert('No se encontraron datos de reserva. Redirigiendo al inicio...');
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
         return;
     }
     
     try {
         datosReserva = JSON.parse(datosString);
-        console.log('Datos de reserva cargados:', datosReserva);
         mostrarResumenTurnos();
     } catch (error) {
-        console.error('Error al parsear datos de reserva:', error);
         alert('Error en los datos de reserva. Redirigiendo al inicio...');
-        window.location.href = 'index.html';
+        window.location.href = '../index.html';
     }
 }
 
@@ -53,6 +50,7 @@ function mostrarResumenTurnos() {
                 <strong>Trabajos:</strong> ${trabajosTexto}<br>
                 <strong>Duración:</strong> ${turno.trabajos.length * 30} minutos
             </div>
+            ${index < datosReserva.turnos.length - 1 ? '<hr class="turno-divisor">' : ''}
         `;
         
         totalServicios += turno.trabajos.length;
@@ -160,14 +158,10 @@ function mostrarExito(mensaje) {
 
 async function procesarConfirmacionFinal(event) {
     event.preventDefault();
-    
-    console.log('Iniciando confirmación final...');
-    
 
     if (!validarFormularioCompleto()) {
         return;
     }
-    
 
     mostrarLoading(true);
     limpiarErrores();
@@ -179,9 +173,6 @@ async function procesarConfirmacionFinal(event) {
             telefono: document.getElementById('telefonoResponsable').value.trim(),
             email: document.getElementById('emailResponsable').value.trim()
         };
-        
-        console.log('Datos del responsable:', responsable);
-        
 
         const resultados = await procesarTodosLosTurnos(responsable);
         
@@ -193,14 +184,13 @@ async function procesarConfirmacionFinal(event) {
             
 
             setTimeout(() => {
-                window.location.href = 'index.html?reserva=exitosa';
+                window.location.href = '../index.html?reserva=exitosa';
             }, 3000);
         } else {
             mostrarError('No se pudo guardar ningún turno. Por favor, intente nuevamente.');
         }
         
     } catch (error) {
-        console.error('Error en confirmación final:', error);
         mostrarError('Error al procesar la reserva. Por favor, intente nuevamente.');
     } finally {
         mostrarLoading(false);
@@ -242,13 +232,11 @@ async function procesarTodosLosTurnos(responsable) {
         try {
             await procesarTurnoIndividual(turno, responsable);
             resultados.exitosos.push(turno);
-            console.log(`Turno guardado: ${turno.nombre} - ${turno.fecha} ${turno.horario}`);
         } catch (error) {
             resultados.errores.push({
                 turno: turno,
                 error: error.message
             });
-            console.error(`Error en turno: ${turno.nombre}`, error);
         }
     }
     
@@ -259,9 +247,6 @@ async function procesarTodosLosTurnos(responsable) {
 async function procesarTurnoIndividual(turno, responsable) {
     const [hora, minutos] = turno.horario.split(':').map(Number);
     let minutosInicio = hora * 60 + minutos;
-    
-    console.log('Procesando turno individual:', turno);
-    
 
     for (let i = 0; i < turno.trabajos.length; i++) {
         const trabajo = turno.trabajos[i];
@@ -269,14 +254,6 @@ async function procesarTurnoIndividual(turno, responsable) {
         const horaActual = Math.floor(minutosActuales / 60);
         const minActual = minutosActuales % 60;
         const horarioTrabajo = `${String(horaActual).padStart(2, '0')}:${String(minActual).padStart(2, '0')}`;
-        
-        console.log(`Guardando trabajo ${i + 1}/${turno.trabajos.length}:`, {
-            nombre: turno.nombre,
-            trabajo: trabajo.trabajoTexto,
-            medida: trabajo.medidaTexto,
-            fecha: turno.fechaCompleta,
-            horario: horarioTrabajo
-        });
         
         const response = await fetch('http://localhost:5000/guardar_turno', {
             method: 'POST',
@@ -294,7 +271,6 @@ async function procesarTurnoIndividual(turno, responsable) {
         });
         
         const data = await response.json();
-        console.log('Respuesta del servidor:', data);
         
         if (!response.ok) {
             if (response.status === 409) {

@@ -18,6 +18,7 @@ function mostrarTurnos(turnos) {
     const tbody = document.getElementById('tabla-turnos-body');
     tbody.innerHTML = '';
     const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
     
     if (turnos.length === 0) {
         tbody.innerHTML = '<tr><td colspan="9" style="text-align: center;">No se encontraron turnos en el rango seleccionado</td></tr>';
@@ -26,6 +27,8 @@ function mostrarTurnos(turnos) {
     
     turnos.forEach(turno => {
         const fechaTurno = new Date(turno.fecha);
+        fechaTurno.setHours(0, 0, 0, 0);
+        
         let estado = 'Pendiente';
         if (fechaTurno < hoy) {
             estado = 'Realizado';

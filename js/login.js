@@ -81,7 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => {
-            console.error('Error:', error);
             mostrarError('Error de conexión con el servidor');
             btnIngresar.disabled = false;
             btnIngresar.textContent = 'Ingresar';

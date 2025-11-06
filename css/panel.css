@@ -149,6 +149,65 @@
     text-decoration: line-through;
 }
 
+.tabla-turnos {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #f5f6fa;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(60,66,95,0.10);
+    font-size: 14px;
+}
+
+.tabla-turnos th, .tabla-turnos td {
+    padding: 10px 8px;
+    text-align: center;
+    border-bottom: 1px solid #bfc2e0;
+    vertical-align: middle;
+}
+
+.tabla-turnos th {
+    background: #bfc2e0;
+    color: #3c425f;
+    font-weight: bold;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.tabla-turnos td {
+    word-wrap: break-word;
+    max-width: 150px;
+}
+
+.tabla-turnos td:nth-child(1) {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.tabla-turnos td:nth-child(6),
+.tabla-turnos td:nth-child(7) {
+    font-size: 12px;
+    color: #5a6c7d;
+}
+
+.tabla-turnos td:nth-child(7) {
+    word-break: break-all;
+    max-width: 120px;
+}
+
+.tabla-turnos tr:nth-child(even) {
+    background-color: rgba(255,255,255,0.3);
+}
+
+.tabla-turnos tr:hover {
+    background-color: rgba(63,94,251,0.1);
+}
+
+.tabla-turnos tr:last-child td {
+    border-bottom: none;
+}
+
 @media (max-width: 768px) {
     .tabla-turnos {
         font-size: 0.85rem;
