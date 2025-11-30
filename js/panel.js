@@ -1,12 +1,13 @@
 let todosLosTurnos = [];
+let sesionUsuario = null;
 
 document.addEventListener('DOMContentLoaded', function() {
-    verificarAutenticacion();
+    sesionUsuario = verificarAutenticacion();
     cargarTurnos();
 });
 
 function cargarTurnos() {
-    fetch('http://localhost:5000/listar_turnos')
+    fetch('http://localhost:5001/listar_turnos')
         .then(response => response.json())
         .then(turnos => {
             todosLosTurnos = turnos;
@@ -38,6 +39,11 @@ function mostrarTurnos(turnos) {
         const responsableNombre = turno.responsable?.nombre || 'No registrado';
         const responsableEmail = turno.responsable?.email || 'No registrado';
         
+        // Verificar si el usuario puede cancelar turnos
+        const puedeCancelar = sesionUsuario?.puedeCancelarTurnos !== false;
+        const botonDeshabilitado = estado === 'Realizado' || !puedeCancelar;
+        const textoBoton = !puedeCancelar ? 'Sin permiso' : 'Cancelar';
+        
         tr.innerHTML = `
             <td>${turno.nombre}</td>
             <td>${turno.trabajo}</td>
@@ -48,25 +54,36 @@ function mostrarTurnos(turnos) {
             <td>${responsableEmail}</td>
             <td>${estado}</td>
             <td>
-                <button class="agregar_style cancelar-btn" ${estado === 'Realizado' ? 'disabled' : ''}>Cancelar</button>
+                <button class="agregar_style cancelar-btn" ${botonDeshabilitado ? 'disabled' : ''}>${textoBoton}</button>
             </td>
         `;
-        if (estado === 'Pendiente') {
+        if (estado === 'Pendiente' && puedeCancelar) {
             tr.querySelector('.cancelar-btn').onclick = function() {
                 if (confirm('¿Seguro que deseas cancelar este turno?')) {
-                    fetch('http://localhost:5000/cancelar_turno', {
+                    fetch('http://localhost:5001/cancelar_turno', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: new URLSearchParams({
                             nombre: turno.nombre,
                             fecha: turno.fecha,
-                            horario: turno.horario
+                            horario: turno.horario,
+                            usuario: sesionUsuario.usuario
                         })
                     })
                     .then(response => response.json())
                     .then(data => {
-                        alert(data.mensaje);
-                        tr.remove();
+                        if (data.mensaje === 'No tienes permiso para cancelar turnos') {
+                            alert('⚠️ ' + data.mensaje);
+                        } else {
+                            alert(data.mensaje);
+                            if (data.mensaje === 'Turno cancelado') {
+                                tr.remove();
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error al cancelar el turno');
+                        console.error(error);
                     });
                 }
             };
@@ -120,5 +137,7 @@ function verificarAutenticacion() {
     if (!sesion) {
         alert('Acceso no autorizado. Redirigiendo al login...');
         window.location.href = 'login.html';
+        return null;
     }
+    return JSON.parse(sesion);
 }

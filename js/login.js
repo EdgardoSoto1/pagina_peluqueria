@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
         ocultarError();
         
 
-        fetch('http://localhost:5000/login', {
+        fetch('http://localhost:5001/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -69,7 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 localStorage.setItem('admin_session', JSON.stringify({
                     usuario: data.usuario,
-                    timestamp: new Date().getTime()
+                    timestamp: new Date().getTime(),
+                    puedeCancelarTurnos: data.puedeCancelarTurnos,
+                    nombre: data.nombre
                 }));
                 
 

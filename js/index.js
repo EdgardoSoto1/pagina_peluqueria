@@ -1,5 +1,28 @@
 let turnosAcumulados = [];
 let contadorTrabajos = 1;
+let trabajosDisponibles = []; // Almacena los trabajos del backend
+
+// Cargar trabajos desde el backend
+async function cargarTrabajos() {
+    try {
+        const response = await fetch('http://localhost:5001/listar_trabajos');
+        const trabajos = await response.json();
+        trabajosDisponibles = trabajos;
+        return trabajos;
+    } catch (error) {
+        console.error('Error al cargar trabajos:', error);
+        return [];
+    }
+}
+
+// Generar opciones de trabajos para el select
+function generarOpcionesTrabajo() {
+    let opciones = '<option value="">Selecciona un trabajo</option>';
+    trabajosDisponibles.forEach(trabajo => {
+        opciones += `<option value="${trabajo.nombre}">${trabajo.nombre}</option>`;
+    });
+    return opciones;
+}
 
 function agregarOtroTrabajo() {
     contadorTrabajos++;
@@ -16,20 +39,13 @@ function agregarOtroTrabajo() {
             <div class="grupo-campo">
                 <label for="seleccion_${contadorTrabajos}">Tipo de trabajo(*)</label>
                 <select id="seleccion_${contadorTrabajos}" class="trabajo-select" required>
-                    <option value="">Selecciona un trabajo</option>
-                    <option value="Corte">Corte</option>
-                    <option value="Tintura">Tintura</option>
-                    <option value="Alisado">Alisado</option>
-                    <option value="Permanente">Permanente</option>
+                    ${generarOpcionesTrabajo()}
                 </select>
             </div>
             <div class="grupo-campo">
                 <label for="medida_${contadorTrabajos}">Largo de cabello</label>
                 <select id="medida_${contadorTrabajos}" class="medida-select" required>
                     <option value="vacio" readonly>Selecciona una medida</option>
-                    <option value="Corto">Corto</option>
-                    <option value="Medio">Medio</option>
-                    <option value="Largo">Largo</option>
                 </select>
             </div>
             <button type="button" id="verMedidaBtn_${contadorTrabajos}">Ver medida de cabello</button>
@@ -49,13 +65,28 @@ function agregarOtroTrabajo() {
     const verMedidaBtn = document.getElementById(`verMedidaBtn_${contadorTrabajos}`);
     
     trabajoSelect.addEventListener('change', function() {
-        if (this.value === 'Corte') {
-            medidaSelect.disabled = true;
-            medidaSelect.value = 'vacio';
-            verMedidaBtn.disabled = true;
-        } else {
-            medidaSelect.disabled = false;
-            verMedidaBtn.disabled = false;
+        const trabajoSeleccionado = trabajosDisponibles.find(t => t.nombre === this.value);
+        
+        if (trabajoSeleccionado) {
+            // Si el trabajo NO requiere medida
+            if (!trabajoSeleccionado.requiereMedida) {
+                medidaSelect.disabled = true;
+                medidaSelect.value = 'vacio';
+                verMedidaBtn.disabled = true;
+                medidaSelect.innerHTML = '<option value="vacio">No requiere medida</option>';
+            } else {
+                // Si requiere medida, cargar las medidas específicas del trabajo
+                medidaSelect.disabled = false;
+                verMedidaBtn.disabled = false;
+                
+                let opcionesMedida = '<option value="vacio" readonly>Selecciona una medida</option>';
+                if (trabajoSeleccionado.medidas && trabajoSeleccionado.medidas.length > 0) {
+                    trabajoSeleccionado.medidas.forEach(medida => {
+                        opcionesMedida += `<option value="${medida}">${medida}</option>`;
+                    });
+                }
+                medidaSelect.innerHTML = opcionesMedida;
+            }
         }
     });
     
@@ -328,23 +359,46 @@ async function confirmarTodosLosTurnos() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+    // Cargar trabajos desde el backend
+    await cargarTrabajos();
+    
+    // Inicializar primer trabajo
+    const trabajo = document.getElementById('seleccion_1');
+    const medida = document.getElementById('medida');
+    const verMedidaBtn = document.getElementById('verMedidaBtn');
+    
+    // Cargar opciones de trabajos en el primer select
+    trabajo.innerHTML = generarOpcionesTrabajo();
+    
     let boton = document.getElementById('verMedidaBtn');
     let contenedor = document.getElementById('contenedorMedida');
     let imagen = document.querySelector('#contenedorMedida .medida');
     asignarEventosMedida(contenedor, boton, imagen);
 
-    const trabajo = document.getElementById('seleccion_1');
-    const medida = document.getElementById('medida');
-    const verMedidaBtn = document.getElementById('verMedidaBtn');
-
     function actualizarMedida() {
-        if (trabajo.value === 'Corte') { 
-            medida.disabled = true;
-            verMedidaBtn.disabled = true;
-        } else {
-            medida.disabled = false;
-            verMedidaBtn.disabled = false;
+        const trabajoSeleccionado = trabajosDisponibles.find(t => t.nombre === trabajo.value);
+        
+        if (trabajoSeleccionado) {
+            // Si el trabajo NO requiere medida
+            if (!trabajoSeleccionado.requiereMedida) {
+                medida.disabled = true;
+                medida.value = 'vacio';
+                verMedidaBtn.disabled = true;
+                medida.innerHTML = '<option value="vacio">No requiere medida</option>';
+            } else {
+                // Si requiere medida, cargar las medidas específicas del trabajo
+                medida.disabled = false;
+                verMedidaBtn.disabled = false;
+                
+                let opcionesMedida = '<option value="vacio" readonly>Selecciona una medida</option>';
+                if (trabajoSeleccionado.medidas && trabajoSeleccionado.medidas.length > 0) {
+                    trabajoSeleccionado.medidas.forEach(medidaOpt => {
+                        opcionesMedida += `<option value="${medidaOpt}">${medidaOpt}</option>`;
+                    });
+                }
+                medida.innerHTML = opcionesMedida;
+            }
         }
     }
 
@@ -439,7 +493,7 @@ function mostrarCalendario() {
 let horariosOcupados = {};
 
 function cargarTurnosOcupados() {
-    return fetch('http://localhost:5000/listar_turnos')
+    return fetch('http://localhost:5001/listar_turnos')
         .then(response => response.json())
         .then(turnos => {
             horariosOcupados = {};

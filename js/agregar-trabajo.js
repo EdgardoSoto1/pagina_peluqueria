@@ -42,7 +42,7 @@ function simularGuardado(trabajoData) {
     submitBtn.disabled = true;
 
 
-    fetch('/agregar_trabajo', {
+    fetch('http://localhost:5001/agregar_trabajo', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

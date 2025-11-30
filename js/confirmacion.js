@@ -167,13 +167,27 @@ async function procesarConfirmacionFinal(event) {
     limpiarErrores();
     
     try {
-
         const responsable = {
             nombre: document.getElementById('nombreResponsable').value.trim(),
             telefono: document.getElementById('telefonoResponsable').value.trim(),
             email: document.getElementById('emailResponsable').value.trim()
         };
 
+        // Primero guardamos el cliente
+        const responseCliente = await fetch('http://localhost:5001/guardar_cliente', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(responsable)
+        });
+
+        if (!responseCliente.ok) {
+            throw new Error('Error al guardar el cliente');
+        }
+
+        const clienteData = await responseCliente.json();
+        console.log('Cliente guardado:', clienteData);
+
+        // Luego procesamos los turnos
         const resultados = await procesarTodosLosTurnos(responsable);
         
         if (resultados.exitosos.length > 0) {
@@ -255,7 +269,7 @@ async function procesarTurnoIndividual(turno, responsable) {
         const minActual = minutosActuales % 60;
         const horarioTrabajo = `${String(horaActual).padStart(2, '0')}:${String(minActual).padStart(2, '0')}`;
         
-        const response = await fetch('http://localhost:5000/guardar_turno', {
+        const response = await fetch('http://localhost:5001/guardar_turno', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams({
