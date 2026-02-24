@@ -126,7 +126,7 @@ def listar_turnos():
         {
             '$unwind': {
                 'path': '$responsable',
-                'preserveNullAndEmptyArrays': True  # Por si hay turnos sin cliente
+                'preserveNullAndEmptyArrays': True 
             }
         },
         {
